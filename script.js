@@ -14,38 +14,46 @@ function playRound(playerSelection, computerSelection) {
         case "rock":
             switch(computerSelection) {
                 case "rock":
-                    return "Tie! Both players selected rock!";
+                    console.log("Tie! Both players selected rock!");
+                    return 0;
                 case "paper":
-                    return "You lose! Paper beats rock!";
+                    console.log("You lose! Paper beats rock!");
+                    return -1;
                 // if computerSelection is scissors
                 default:
-                    return "You win! Rock beats scissors!";
+                    console.log("You win! Rock beats scissors!");
+                    return 1;
             }
         case "paper":
             switch(computerSelection) {
                 case "rock":
-                    return "You win! Paper beats rock!";
+                    console.log("You win! Paper beats rock!");
+                    return 1;
                 case "paper":
-                    return "Tie! Both players selected paper!";
+                    console.log("Tie! Both players selected paper!");
+                    return 0;
                 default:
-                    return "You lose! Scissors beats paper!";
+                    console.log("You lose! Scissors beats paper!");
+                    return -1;
             }
         // if playerSelection is scissors
         default:
             switch(computerSelection) {
                 case "rock":
-                    return "You lose! Rock beats scissors!";
+                    console.log("You lose! Rock beats scissors!");
+                    return -1;
                 case "paper":
-                    return "You win! Scissors beats paper!";
+                    console.log("You win! Scissors beats paper!");
+                    return 1;
                 default:
-                    return "Tie! Both players selected scissors!";
+                    console.log("Tie! Both players selected scissors!");
+                    return 0;
             }
     }
 }
 
 function game() {
     let userScore = 0;
-    let computerScore = 0;
     for (let i = 0; i < 5; i++) {
         let playerSelection = prompt('Rock, Paper, or Scissors?');
         let computerSelection = computerPlay();
@@ -57,16 +65,17 @@ function game() {
         while (!(playerSelection === 'rock' || playerSelection === 'scissors' || playerSelection === 'paper')) {
             playerSelection = prompt('Bad input! Rock, Paper, or Scissors?');
         }
-        let result = playRound(playerSelection, computerSelection);
-        console.log(result);
-        if (result.includes('win')) {
-            userScore++;
-        }
-        else if (result.includes('lose')) {
-            computerScore++;
-        }
+        userScore += playRound(playerSelection, computerSelection);
      }
-     alert(userScore > computerScore ? "You win!" : "You lose!");
+     if (userScore > 0) {
+        alert("You win!");
+     }
+     else if (userScore < 0) {
+        alert("You lose!");
+     }
+     else {
+        alert("Tie!");
+     }
 }
 
 game();
