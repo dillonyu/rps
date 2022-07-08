@@ -54,7 +54,7 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     let userScore = 0;
-    for (let i = 0; i < 5; i++) {
+    // for (let i = 0; i < 5; i++) {
         let playerSelection = prompt('Rock, Paper, or Scissors?');
         let computerSelection = computerPlay();
         if (playerSelection === null) {
@@ -66,7 +66,7 @@ function game() {
             playerSelection = prompt('Bad input! Rock, Paper, or Scissors?');
         }
         userScore += playRound(playerSelection, computerSelection);
-     }
+    //  }
      if (userScore > 0) {
         alert("You win!");
      }
