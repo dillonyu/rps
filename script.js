@@ -71,8 +71,10 @@ function game() {
                 roundNumDisplay.textContent = `Round ${++roundNum} of 5:`;
                 let userPick = button.id;
                 let computerPick = computerPlay();
-                userPickDisplay.textContent = `Your Pick: ${userPick.charAt(0).toUpperCase() + userPick.slice(1)}`;
-                computerPickDisplay.textContent = `Computer Pick: ${computerPick.charAt(0).toUpperCase() + computerPick.slice(1)}`;
+                userPickDisplay.textContent = `Your Pick: ${userPick.charAt(0).toUpperCase() + 
+                    userPick.slice(1)}`;
+                computerPickDisplay.textContent = `Computer Pick: ${computerPick.charAt(0).toUpperCase() + 
+                    computerPick.slice(1)}`;
                 let result = playRound(userPick, computerPick);
                 roundResultDisplay.textContent = result;
 
