@@ -9,11 +9,11 @@ function computerPlay() {
     return "scissors";
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(userPick, computerPick) {
     const result = document.querySelector('.result');
-    switch(playerSelection) {
+    switch(userPick) {
         case "rock":
-            switch(computerSelection) {
+            switch(computerPick) {
                 case "rock":
                     result.textContent = "Tie! Both players selected rock!";
                     return 0;
@@ -26,7 +26,7 @@ function playRound(playerSelection, computerSelection) {
                     return 1;
             }
         case "paper":
-            switch(computerSelection) {
+            switch(computerPick) {
                 case "rock":
                     result.textContent = "You win! Paper beats rock!";
                     return 1;
@@ -39,7 +39,7 @@ function playRound(playerSelection, computerSelection) {
             }
         // if playerSelection is scissors
         default:
-            switch(computerSelection) {
+            switch(computerPick) {
                 case "rock":
                     result.textContent = "You lose! Rock beats scissors!";
                     return -1;
@@ -57,10 +57,10 @@ function game() {
     let userScore = 0;
     let computerScore = 0;
     const buttonSelections = document.querySelectorAll('button');
-    const playerSelectionDisplay = document.createElement('p');
-    const computerSelectionDisplay = document.createElement('p');
-    const resultDisplay = document.querySelector('.results');
-    
+    const userPickDisplay = document.createElement('p');
+    const computerPickDisplay = document.createElement('p');
+    const resultsDisplay = document.querySelector('.results');
+
     buttonSelections.forEach((button) => {
         button.addEventListener('click', function onClick() {
             let total = userScore + computerScore;
@@ -73,13 +73,13 @@ function game() {
                 }
             }
             else {
-                let playerSelection = button.id;
-                let computerSelection = computerPlay();
-                playerSelectionDisplay.textContent = `Your Pick: ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)}`;
-                computerSelectionDisplay.textContent = `Computer Pick: ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`;
-                resultDisplay.appendChild(playerSelectionDisplay);
-                resultDisplay.appendChild(computerSelectionDisplay);
-                let result = playRound(playerSelection, computerSelection);
+                let userPick = button.id;
+                let computerPick = computerPlay();
+                userPickDisplay.textContent = `Your Pick: ${userPick.charAt(0).toUpperCase() + userPick.slice(1)}`;
+                computerPickDisplay.textContent = `Computer Pick: ${computerPick.charAt(0).toUpperCase() + computerPick.slice(1)}`;
+                resultsDisplay.appendChild(userPickDisplay);
+                resultsDisplay.appendChild(computerPickDisplay);
+                let result = playRound(userPick, computerPick);
                 switch(result) {
                     case 1: 
                         userScore++;
