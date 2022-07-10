@@ -10,17 +10,21 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
+    // const result = document.querySelector('.result');
     switch(playerSelection) {
         case "rock":
             switch(computerSelection) {
                 case "rock":
+                    // result.textContent = "Tie! Both players selected rock!";
                     console.log("Tie! Both players selected rock!");
                     return 0;
                 case "paper":
+                    // result.textContent = "You lose! Paper beats rock!";
                     console.log("You lose! Paper beats rock!");
                     return -1;
                 // if computerSelection is scissors
                 default:
+                    // result.textContent = "You win! Rock beats scissors!";
                     console.log("You win! Rock beats scissors!");
                     return 1;
             }
@@ -58,8 +62,8 @@ function game() {
         const buttonSelections = document.querySelectorAll('button');
         buttonSelections.forEach((button) => {
             let playerSelection = button.id;
-            let computerSelection = computerPlay();
             button.addEventListener('click', () => {
+                let computerSelection = computerPlay();
                 playRound(playerSelection, computerSelection);
             });
         });
