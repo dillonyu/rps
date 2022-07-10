@@ -55,27 +55,33 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let userScore = 0;
     // for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt('Rock, Paper, or Scissors?');
-        let computerSelection = computerPlay();
-        if (playerSelection === null) {
-            return;
-        }
-        playerSelection = playerSelection.toLowerCase();
-        // For bad inputs that aren't R, P, or S
-        while (!(playerSelection === 'rock' || playerSelection === 'scissors' || playerSelection === 'paper')) {
-            playerSelection = prompt('Bad input! Rock, Paper, or Scissors?');
-        }
-        userScore += playRound(playerSelection, computerSelection);
+        const buttonSelections = document.querySelectorAll('button');
+        buttonSelections.forEach((button) => {
+            let playerSelection = button.id;
+            let computerSelection = computerPlay();
+            button.addEventListener('click', () => {
+                playRound(playerSelection, computerSelection);
+            });
+        });
+    //     if (playerSelection === null) {
+    //         return;
+    //     }
+    //     playerSelection = playerSelection.toLowerCase();
+    //     // For bad inputs that aren't R, P, or S
+    //     while (!(playerSelection === 'rock' || playerSelection === 'scissors' || playerSelection === 'paper')) {
+    //         playerSelection = prompt('Bad input! Rock, Paper, or Scissors?');
+    //     }
+    //     userScore += playRound(playerSelection, computerSelection);
+    // //  }
+    //  if (userScore > 0) {
+    //     alert("You win!");
     //  }
-     if (userScore > 0) {
-        alert("You win!");
-     }
-     else if (userScore < 0) {
-        alert("You lose!");
-     }
-     else {
-        alert("Tie!");
-     }
+    //  else if (userScore < 0) {
+    //     alert("You lose!");
+    //  }
+    //  else {
+    //     alert("Tie!");
+    //  }
 }
 
 game();
