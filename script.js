@@ -10,47 +10,44 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    // const result = document.querySelector('.result');
+    const result = document.querySelector('.result');
     switch(playerSelection) {
         case "rock":
             switch(computerSelection) {
                 case "rock":
-                    // result.textContent = "Tie! Both players selected rock!";
-                    console.log("Tie! Both players selected rock!");
+                    result.textContent = "Tie! Both players selected rock!";
                     return 0;
                 case "paper":
-                    // result.textContent = "You lose! Paper beats rock!";
-                    console.log("You lose! Paper beats rock!");
+                    result.textContent = "You lose! Paper beats rock!";
                     return -1;
                 // if computerSelection is scissors
                 default:
-                    // result.textContent = "You win! Rock beats scissors!";
-                    console.log("You win! Rock beats scissors!");
+                    result.textContent = "You win! Rock beats scissors!";
                     return 1;
             }
         case "paper":
             switch(computerSelection) {
                 case "rock":
-                    console.log("You win! Paper beats rock!");
+                    result.textContent = "You win! Paper beats rock!";
                     return 1;
                 case "paper":
-                    console.log("Tie! Both players selected paper!");
+                    result.textContent = "Tie! Both players selected paper!";
                     return 0;
                 default:
-                    console.log("You lose! Scissors beats paper!");
+                    result.textContent = "You lose! Scissors beats paper!";
                     return -1;
             }
         // if playerSelection is scissors
         default:
             switch(computerSelection) {
                 case "rock":
-                    console.log("You lose! Rock beats scissors!");
+                    result.textContent = "You lose! Rock beats scissors!";
                     return -1;
                 case "paper":
-                    console.log("You win! Scissors beats paper!");
+                    result.textContent = "You win! Scissors beats paper!";
                     return 1;
                 default:
-                    console.log("Tie! Both players selected scissors!");
+                    result.textContent = "Tie! Both players selected scissors!";
                     return 0;
             }
     }
