@@ -95,28 +95,4 @@ function game() {
     });
 }
 
-function onClick() {
-    let computerSelection = computerPlay();
-    let result = playRound(playerSelection, computerSelection);
-    switch(result) {
-        case 1: 
-            userScore++;
-            break;
-        case -1: 
-            computerScore++;
-            break;
-        default:
-            break;
-    }
-    let total = userScore + computerScore;
-    if (total === 5) {
-        if (userScore > computerScore) {
-            console.log("You win!");
-        } 
-        else {
-            console.log("You lose!");
-        }
-    }
-}
-
 game();
