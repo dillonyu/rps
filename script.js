@@ -22,7 +22,7 @@ function playRound(playerSelection, computerSelection) {
                     return -1;
                 // if computerSelection is scissors
                 default:
-                    result.textContent = "You win! Rock beats scissors!";
+                    roundResult.textContent = "You win! Rock beats scissors!";
                     return 1;
             }
         case "paper":
@@ -55,34 +55,60 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     let userScore = 0;
-    // for (let i = 0; i < 5; i++) {
-        const buttonSelections = document.querySelectorAll('button');
-        buttonSelections.forEach((button) => {
-            let playerSelection = button.id;
-            button.addEventListener('click', () => {
+    let computerScore = 0;
+    const buttonSelections = document.querySelectorAll('button');
+    buttonSelections.forEach((button) => {
+        let playerSelection = button.id;
+        button.addEventListener('click', function onClick() {
+            let total = userScore + computerScore;
+            if (total === 5) {
+                if (userScore > computerScore) {
+                    console.log("You win!");
+                } 
+                else {
+                    console.log("You lose!");
+                }
+            }
+            else {
                 let computerSelection = computerPlay();
-                playRound(playerSelection, computerSelection);
-            });
+                let result = playRound(playerSelection, computerSelection);
+                switch(result) {
+                    case 1: 
+                        userScore++;
+                        break;
+                    case -1: 
+                        computerScore++;
+                        break;
+                    default:
+                        break;
+                }
+            }
         });
-    //     if (playerSelection === null) {
-    //         return;
-    //     }
-    //     playerSelection = playerSelection.toLowerCase();
-    //     // For bad inputs that aren't R, P, or S
-    //     while (!(playerSelection === 'rock' || playerSelection === 'scissors' || playerSelection === 'paper')) {
-    //         playerSelection = prompt('Bad input! Rock, Paper, or Scissors?');
-    //     }
-    //     userScore += playRound(playerSelection, computerSelection);
-    // //  }
-    //  if (userScore > 0) {
-    //     alert("You win!");
-    //  }
-    //  else if (userScore < 0) {
-    //     alert("You lose!");
-    //  }
-    //  else {
-    //     alert("Tie!");
-    //  }
+    });
+}
+
+function onClick() {
+    let computerSelection = computerPlay();
+    let result = playRound(playerSelection, computerSelection);
+    switch(result) {
+        case 1: 
+            userScore++;
+            break;
+        case -1: 
+            computerScore++;
+            break;
+        default:
+            break;
+    }
+    let total = userScore + computerScore;
+    if (total === 5) {
+        if (userScore > computerScore) {
+            console.log("You win!");
+        } 
+        else {
+            console.log("You lose!");
+        }
+    }
 }
 
 game();
