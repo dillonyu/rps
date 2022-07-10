@@ -54,6 +54,8 @@ function game() {
     const userPickDisplay = document.createElement('p');
     const computerPickDisplay = document.createElement('p');
     const roundResultDisplay = document.createElement('p'); // for a single round only
+    const userScoreDisplay = document.createElement('p');
+    const computerScoreDisplay = document.createElement('p');
     const resultsDisplay = document.querySelector('.results');
 
     buttonSelections.forEach((button) => {
@@ -68,9 +70,10 @@ function game() {
                 }
             }
             else {
-                roundNumDisplay.textContent = `Round ${++roundNum} of 5:`;
+                roundNumDisplay.textContent = `Round ${++roundNum}:`;
                 let userPick = button.id;
                 let computerPick = computerPlay();
+
                 userPickDisplay.textContent = `Your Pick: ${userPick.charAt(0).toUpperCase() + 
                     userPick.slice(1)}`;
                 computerPickDisplay.textContent = `Computer Pick: ${computerPick.charAt(0).toUpperCase() + 
@@ -78,10 +81,18 @@ function game() {
                 let result = playRound(userPick, computerPick);
                 roundResultDisplay.textContent = result;
 
+                if (result.includes('win')) userScore++;
+                else if (result.includes('lose')) computerScore++;
+
+                userScoreDisplay.textContent = `Your Score: ${userScore}`;
+                computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
+
                 resultsDisplay.appendChild(roundNumDisplay);
                 resultsDisplay.appendChild(userPickDisplay);
                 resultsDisplay.appendChild(computerPickDisplay);
                 resultsDisplay.appendChild(roundResultDisplay);
+                resultsDisplay.appendChild(userScoreDisplay);
+                resultsDisplay.appendChild(computerScoreDisplay);
             }
         });
     });
