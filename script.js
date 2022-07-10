@@ -47,7 +47,10 @@ function playRound(userPick, computerPick) {
 function game() {
     let userScore = 0;
     let computerScore = 0;
+    let roundNum = 0;
     const buttonSelections = document.querySelectorAll('button');
+
+    const roundNumDisplay = document.createElement('h2');
     const userPickDisplay = document.createElement('p');
     const computerPickDisplay = document.createElement('p');
     const roundResultDisplay = document.createElement('p'); // for a single round only
@@ -65,6 +68,7 @@ function game() {
                 }
             }
             else {
+                roundNumDisplay.textContent = `Round ${++roundNum} of 5:`;
                 let userPick = button.id;
                 let computerPick = computerPlay();
                 userPickDisplay.textContent = `Your Pick: ${userPick.charAt(0).toUpperCase() + userPick.slice(1)}`;
@@ -72,6 +76,7 @@ function game() {
                 let result = playRound(userPick, computerPick);
                 roundResultDisplay.textContent = result;
 
+                resultsDisplay.appendChild(roundNumDisplay);
                 resultsDisplay.appendChild(userPickDisplay);
                 resultsDisplay.appendChild(computerPickDisplay);
                 resultsDisplay.appendChild(roundResultDisplay);
