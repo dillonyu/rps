@@ -56,18 +56,19 @@ function game() {
     const roundResultDisplay = document.createElement('p'); // for a single round only
     const userScoreDisplay = document.createElement('p');
     const computerScoreDisplay = document.createElement('p');
+    const finalResultDisplay = document.createElement('h3');
     const resultsDisplay = document.querySelector('.results');
 
     buttonSelections.forEach((button) => {
         button.addEventListener('click', function onClick() {
-            let total = userScore + computerScore;
-            if (total === 5) {
+            if (userScore === 5 || computerScore === 5) {
                 if (userScore > computerScore) {
-                    console.log("You win!");
+                    finalResultDisplay.textContent = "Congratulations! You win!";
                 } 
                 else {
-                    console.log("You lose!");
+                    finalResultDisplay.textContent = "Sorry, you lose!"
                 }
+                resultsDisplay.appendChild(finalResultDisplay);
             }
             else {
                 roundNumDisplay.textContent = `Round ${++roundNum}:`;
