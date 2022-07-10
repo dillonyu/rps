@@ -57,8 +57,11 @@ function game() {
     let userScore = 0;
     let computerScore = 0;
     const buttonSelections = document.querySelectorAll('button');
+    const playerSelectionDisplay = document.createElement('p');
+    const computerSelectionDisplay = document.createElement('p');
+    const resultDisplay = document.querySelector('.results');
+    
     buttonSelections.forEach((button) => {
-        let playerSelection = button.id;
         button.addEventListener('click', function onClick() {
             let total = userScore + computerScore;
             if (total === 5) {
@@ -70,7 +73,12 @@ function game() {
                 }
             }
             else {
+                let playerSelection = button.id;
                 let computerSelection = computerPlay();
+                playerSelectionDisplay.textContent = `Your Pick: ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)}`;
+                computerSelectionDisplay.textContent = `Computer Pick: ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`;
+                resultDisplay.appendChild(playerSelectionDisplay);
+                resultDisplay.appendChild(computerSelectionDisplay);
                 let result = playRound(playerSelection, computerSelection);
                 switch(result) {
                     case 1: 
